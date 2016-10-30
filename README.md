@@ -6,6 +6,8 @@ As a developer, I would really like to have a simple agile methodolgy to manage 
 
 Now that we have a working basic model of the code, contributions to the code are welcome. Please create a pull request for your contributions.
 
+**Demo:** [Heroku](https://light-weight-kanban-board.herokuapp.com/)
+
 ## Requirements
 
 * **Web Server:** Apache or IIS or nginx.
