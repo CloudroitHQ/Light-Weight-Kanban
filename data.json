@@ -1,0 +1,72 @@
+{
+	"1477789330164": {
+		"title": "Create a better User Interface",
+		"id": "1477789330164",
+		"responsible": "UI",
+		"state": "A",
+		"color": "1"
+	},
+	"1477789346771": {
+		"title": "Use YAGNI Methodology",
+		"id": "1477789346771",
+		"responsible": "Process",
+		"state": "W",
+		"color": "2"
+	},
+	"1477789360794": {
+		"title": "Use a JSON Format",
+		"id": "1477789360794",
+		"responsible": "Data",
+		"state": "C",
+		"color": "1"
+	},
+	"1477789377921": {
+		"title": "Have Lunch",
+		"id": "1477789377921",
+		"responsible": "Personal",
+		"state": "C",
+		"color": "0"
+	},
+	"1477789391889": {
+		"title": "Keep it Simple Stupid",
+		"id": "1477789391889",
+		"responsible": "Process",
+		"state": "A",
+		"color": "2"
+	},
+	"1477789425719": {
+		"title": "Enable support for Commas",
+		"id": "1477789425719",
+		"responsible": "Bug",
+		"state": "B",
+		"color": "0"
+	},
+	"1477789543210": {
+		"title": "Make the UI Look Cool using Harmonious Colours",
+		"id": "1477789543210",
+		"responsible": "UI",
+		"state": "C",
+		"color": "1"
+	},
+	"1477789588232": {
+		"title": "Check for not saving during immediate refresh",
+		"id": "1477789588232",
+		"responsible": "Bug",
+		"state": "A",
+		"color": "0"
+	},
+	"1477789627190": {
+		"title": "Arrangements are based on time?",
+		"id": "1477789627190",
+		"responsible": "Bug",
+		"state": "A",
+		"color": "0"
+	},
+	"1477790315688": {
+		"title": "Sleep at right time!",
+		"id": "1477790315688",
+		"responsible": "Personal",
+		"state": "C",
+		"color": "2"
+	}
+}
