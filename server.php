@@ -4,7 +4,7 @@ define('DATA_FILE', 'data.json');
 function save($data) {
 	$encoded = json_encode($data);
 	$fh = fopen(DATA_FILE, 'w') or die ("Can't open file");
-	fwrite($fh, $encoded);
+	fwrite($fh, strip_tags($encoded));
 	fclose($fh);
 }
 
