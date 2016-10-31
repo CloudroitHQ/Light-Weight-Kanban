@@ -90,6 +90,7 @@
 	};
 
 	var create_story_li_item = function(story) {
+		story.title = $("<div />").html(story.title).text();
 		var story_element = $("<li data-state='" + story.state + "' data-id='" + story.id + "'><div class='box color_" + story.color + "' ><div class='editable' data-id='" + story.id + "'>" + story.title + ", " + story.responsible + "</div></div></li>");
 
 		if (app_data.people[story.responsible] === undefined) {
@@ -182,7 +183,7 @@
 
 		$('#board').on('click', '.editable', function() {
 			if (!IN_EDIT_MODE) {
-				var value = $(this).html();
+				var value = $(this).text();
 				var storyId = $(this).parent().parent().attr('data-id');
 				var oldColor = app_data.rawData[storyId].color;
 				var form = '<form class="text-center"><input type="text" class="editBox" value="' + value + '" data-old-value="' + value + '" data-old-color="' + oldColor + '"/> <a class="save" href="#">save</a> &nbsp;&middot;&nbsp; <a class="cancel" href="#">cancel</a> &nbsp;&middot;&nbsp; <a href="#" class="delete">delete</a> &nbsp;&middot;&nbsp; <a href="#" class="color">color</a></form>';
@@ -235,7 +236,7 @@
 			$(this).parent().parent().parent().addClass('color_' + oldColor);
 
 			var oldContent = $(this).parent().find('input').attr('data-old-value');
-			$(this).parent().parent().html(oldContent);
+			$(this).parent().parent().text(oldContent);
 
 			$('html').unbind('click');
 			setTimeout(function() {
@@ -280,7 +281,7 @@
 			app_data.rawData[storyId] = story;
 			saveData(app_data.rawData);
 			$('html').unbind('click');
-			$(this).parent().html(story.title + ", " + story.responsible);
+			$(this).parent().text(story.title + ", " + story.responsible);
 			setTimeout(function() {
 				IN_EDIT_MODE = false;
 			}, 200);
