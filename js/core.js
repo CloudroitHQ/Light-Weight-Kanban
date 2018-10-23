@@ -43,6 +43,42 @@
 		$('#navigation').append(peopleList);
 	};
 
+	var updatePeopleList = function(story) {
+		var responsible = story.responsible;
+		var id = story.id;
+
+		// Check if this id has already got a tag, if so, delete the id from that tag
+		for (var i in app_data.people) {
+			if (app_data.people.hasOwnProperty(i)) {
+				// i is the tag name
+				var index = app_data.people[i].indexOf(id);
+				// If the story id is in one of the arrays, delete it from the array
+				if (index >= 0) {
+					app_data.people[i].splice(index, 1);
+				}
+				// If the array is empty after the deletion, remove the tag name
+				if (!app_data.people[i].length) {
+					delete app_data.people[i];
+				}
+			}
+		}
+
+		if (app_data.people[responsible]) {
+			responsible.push(id);
+		} else {
+			app_data.people[responsible] = [id];
+		}
+
+		var peopleList = '<form><ul class="people-list">';
+		for (var i in app_data.people) {
+			if (app_data.people.hasOwnProperty(i)) {
+				peopleList += '<li><label><input type="checkbox" name="' + i + '"> ' + i + '</label></li>';
+			}
+		}
+		peopleList += '</ul></form>';
+		$('#navigation').html(peopleList);
+	};
+
 	var saveData = function(data) {
 		if (data === '') {
 			data = {};
@@ -285,6 +321,8 @@
 			setTimeout(function() {
 				IN_EDIT_MODE = false;
 			}, 200);
+			// Update tag list
+			updatePeopleList(story);
 			return false;
 		});
 
