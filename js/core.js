@@ -35,17 +35,17 @@
 	var createPeopleList = function() {
 		var peopleList = '<form><ul class="people-list">';
 		for (var i in app_data.people) {
-			if (app_data.people.hasOwnProperty(i)) {
+			if (app_data.people.hasOwnProperty(i)&&(i !== 'Unassigned')) {
 				peopleList += '<li><label><input type="checkbox" name="' + i + '"> ' + i + '</label></li>';
 			}
 		}
 		peopleList += '</ul></form>';
-		$('#navigation').append(peopleList);
+		$('#navigation').html(peopleList);
 	};
 
 	var updatePeopleList = function(story) {
 		var responsible = story.responsible;
-		var id = story.id;
+		var id = story.id.toString();
 
 		// Check if this id has already got a tag, if so, delete the id from that tag
 		for (var i in app_data.people) {
@@ -64,19 +64,28 @@
 		}
 
 		if (app_data.people[responsible]) {
-			responsible.push(id);
+			app_data.people[responsible].push(id);
 		} else {
 			app_data.people[responsible] = [id];
 		}
 
-		var peopleList = '<form><ul class="people-list">';
-		for (var i in app_data.people) {
-			if (app_data.people.hasOwnProperty(i)) {
-				peopleList += '<li><label><input type="checkbox" name="' + i + '"> ' + i + '</label></li>';
-			}
+		createPeopleList();
+	};
+
+	var deleteFromPeopleList = function(story) {
+		var responsible = story.responsible;
+		var id = story.id.toString();
+		// Delete id from its tag
+		var index = app_data.people[responsible].indexOf(id);
+		if (index >= 0) {
+			app_data.people[responsible].splice(index, 1);
 		}
-		peopleList += '</ul></form>';
-		$('#navigation').html(peopleList);
+		// If the array is empty after the deletion, remove the tag name
+		if (!app_data.people[responsible].length) {
+			delete app_data.people[responsible];
+		}
+
+		createPeopleList();
 	};
 
 	var saveData = function(data) {
@@ -130,9 +139,9 @@
 		var story_element = $("<li data-state='" + story.state + "' data-id='" + story.id + "'><div class='box color_" + story.color + "' ><div class='editable' data-id='" + story.id + "'>" + story.title + ", " + story.responsible + "</div></div></li>");
 
 		if (app_data.people[story.responsible] === undefined) {
-			app_data.people[story.responsible] = [story.id];
+			app_data.people[story.responsible] = [story.id.toString()];
 		} else {
-			app_data.people[story.responsible].push(story.id);
+			app_data.people[story.responsible].push(story.id.toString());
 		}
 		return story_element;
 	};
@@ -285,6 +294,7 @@
 			var id = $(this).parent().parent().attr('data-id');
 			$(this).parent().parent().parent().parent().remove();
 			$('html').unbind('click');
+			deleteFromPeopleList(app_data.rawData[id]);
 			delete app_data.rawData[id];
 			saveData(app_data.rawData);
 			setTimeout(function() {
