@@ -340,5 +340,9 @@
 			$(this).parent().submit();
 			return false;
 		});
+
+		$('#board').on('click', '.editBox', function(event) {
+			event.stopPropagation();
+		});
 	});
 })();
