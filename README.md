@@ -21,7 +21,7 @@ Now that we have a working basic model of the code, contributions to the code ar
 * The colours for the states are defined in the `style.css` with the classes `.col_*`.
 * The four different colours for the cards are defined in the `style.css` with the classes `.color_*`.
 * The only PHP file that is used to fetch and write the data is `server.php`.
-* The data file is defined in the `server.php` on the first line as `define('DATA_FILE', 'data.json');`. *It is recommended that you change the file name.*
+* The data file is defined in the `server.php` on the first line as `define('DATA_FILE', 'data.json');`. *It is recommended that you change the file name. Also note that if you clone this project you won't have a `data.json` file, so please create one on the first run; you can look at the data.json file above.*
 
 ## Features
 
