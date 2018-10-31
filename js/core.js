@@ -37,7 +37,7 @@
 		for (var i in app_data.people) {
 			if (app_data.people.hasOwnProperty(i)&&(i !== 'Unassigned')) {
 				var shortI = i;
-				if(shortI.length > 10)
+				if(shortI.length > 13)
 					shortI = shortI.substring(0, 10) + "...";
 				peopleList += '<li><label title="' + i + '"><input type="checkbox" name="' + i + '"> ' + shortI + '</label></li>';
 			}
