@@ -36,7 +36,10 @@
 		var peopleList = '<form><ul class="people-list">';
 		for (var i in app_data.people) {
 			if (app_data.people.hasOwnProperty(i)&&(i !== 'Unassigned')) {
-				peopleList += '<li><label><input type="checkbox" name="' + i + '"> ' + i + '</label></li>';
+				var shortI = i;
+				if(shortI.length > 10)
+					shortI = shortI.substring(0, 10) + "...";
+				peopleList += '<li><label title="' + i + '"><input type="checkbox" name="' + i + '"> ' + shortI + '</label></li>';
 			}
 		}
 		peopleList += '</ul></form>';
